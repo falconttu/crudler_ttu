@@ -1,4 +1,3 @@
-
 import { StyleSheet, Text } from "react-native";
 import Screen from "../layouts/Screen";
 
