@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StyleSheet } from "react-native";
 import Screen from "../layouts/Screen";
 
@@ -7,14 +8,15 @@ import initialModules from "../../data/modules.js";
 
 export const ModuleListScreen = () => {
   //--Initialisations--
-  const modules = initialModules;
   //--State--
+  const [modules, setModules] = useState(initialModules);
   //--Handlers--
-  const handleSelect = (module) => alert(`Item ${module.ModuleCode} Selected`);
+  const handleDelete = (module) =>
+    setModules(modules.filter(item => item.ModuleID !== module.ModuleID));
   //--View--
   return (
     <Screen>
-      <ModuleList modules={modules} onSelect={handleSelect} />
+      <ModuleList modules={modules} onSelect={handleDelete} />
     </Screen>
   );
 };
