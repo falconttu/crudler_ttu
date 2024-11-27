@@ -4,14 +4,14 @@ import Screen from "../layouts/Screen";
 
 export const ModuleViewScreen = ({ navigate, route }) => {
   //--Initialisations--
-  const { module } = route.params;
+  const { module, onDelete } = route.params;
 
   //--State--
   //--Handlers--
   //--View--
   return (
     <Screen>
-      <ModuleView module={module} />
+      <ModuleView module={module} onDelete={onDelete} />
     </Screen>
   );
 };
