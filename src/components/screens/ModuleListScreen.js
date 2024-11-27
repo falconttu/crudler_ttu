@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { LogBox, StyleSheet } from "react-native";
 import Screen from "../layouts/Screen";
+import { Button, ButtonTray } from "../UI/Button.js";
+import Icons from "../UI/Icons.js";
 
 import ModuleList from "../entity/modules/ModuleList.js";
 
@@ -22,13 +24,25 @@ export const ModuleListScreen = ({ navigation }) => {
     navigation.goBack();
   };
 
-  const handleSelect = (module) =>
+  const gotoViewScreen = (module) =>
     navigation.navigate("ModuleViewScreen", { module, onDelete });
+
+  const handleAdd = (module) => setModules([...modules, module]);
+
+  const onAdd = (module) => {
+    handleAdd(module);
+    navigation.goBack();
+  };
+
+  const gotoAddScreen = () => navigation.navigate('ModuleAddScreen', {onAdd});
 
   //--View--
   return (
     <Screen>
-      <ModuleList modules={modules} onSelect={handleSelect} />
+      <ButtonTray>
+        <Button label="Add" icon={<Icons.Add />} onClick={gotoAddScreen}/>
+      </ButtonTray>
+      <ModuleList modules={modules} onSelect={gotoViewScreen} />
     </Screen>
   );
 };
